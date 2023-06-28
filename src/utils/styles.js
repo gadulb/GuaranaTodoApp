@@ -7,4 +7,11 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    box:{
+        widthMax: 500,
+        gap: 20,
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+    }
 });
