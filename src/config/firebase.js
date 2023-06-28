@@ -1,6 +1,3 @@
-<<<<<<< HEAD
- 
-=======
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -13,4 +10,3 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
->>>>>>> 59508fe (add)
