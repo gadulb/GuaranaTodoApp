@@ -8,11 +8,12 @@ import { db } from "../config/firebase";
 export default function AddTaskScreen({ navigation }) {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [data, setData] = useState("");
+  const [dataPessoa, setDataPessoa] = useState("");
 
   const docRef = addDoc(collection(db, "tarefa"), {
     titulo: titulo,
     descricao: descricao,
+    dataPessoa: dataPessoa,
     data: new Date(),
   });
 
@@ -27,7 +28,7 @@ export default function AddTaskScreen({ navigation }) {
         value={descricao}
         onChangeText={setDescricao}
       />
-      <TextInput label="Data de Cadastro" value={data} onChangeText={setData} />
+      <TextInput label="Data de Cadastro" value={dataPessoa} onChangeText={setDataPessoa} />
 
       <Button
         labelStyle={{ fontWeight: "bold", color: "black" }}
