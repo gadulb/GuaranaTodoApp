@@ -30,7 +30,8 @@ function TabsNavigation() {
         <Tabs.Navigator
             activeColor="black"
             style={{ backgroundColor: 'black' }}
-            tabBarStyle={{ backgroundColor: 'red'
+            tabBarStyle={{ 
+                backgroundColor: 'red'
             }}
             >
             <Tabs.Screen 

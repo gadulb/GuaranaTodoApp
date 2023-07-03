@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         margin: 20,
         padding: 20,
+        paddingVertical: 50,
         backgroundColor: 'white',
         borderRadius: 10,
         gap: 20,
@@ -24,10 +25,10 @@ export const styles = StyleSheet.create({
     titulo: {
         fontSize: 30,
         textAlign: 'center',
-        margin: 10,
+        
         color: 'black',
         fontWeight:"700",
-        margin: 20,
+        
     },
     input: {
         height: 50,
