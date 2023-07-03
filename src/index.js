@@ -6,6 +6,7 @@ import HomeScreen from "./screens/HomeScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import CardScreen from "./screens/CardScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,8 +16,7 @@ export default function RootNavigation() {
             <Stack.Navigator initialRouteName="TabsNavigation">
                 <Stack.Screen name="TabsNavigation" component={TabsNavigation} options={{ headerShown: false }} />
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="AddTaskScreen" component={AddTaskScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="EditTaskScreen" component={EditTaskScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="CardScreen" component={CardScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Task" component={Task} />
             </Stack.Navigator>
         </NavigationContainer>

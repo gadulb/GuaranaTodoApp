@@ -44,12 +44,7 @@ export default function AddTaskScreen({ navigation }) {
         >
           Cadastrar
         </Button>
-        <Button
-          labelStyle={{ fontWeight: "bold", color: "black" }}
-          onPress={() => navigation.navigate("HomeScreen")}
-        >
-          Entrar em conta existente
-        </Button>
+
       </View>
     </View>
   );

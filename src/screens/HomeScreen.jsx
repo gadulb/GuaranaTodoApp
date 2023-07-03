@@ -9,13 +9,10 @@ export default function HomeScreen({navigation}) {
             <View style={styles.box}>
                 <Text style={styles.titulo}>MENU</Text>
                 <Button style={styles.botao} textColor={'black'} mode="contained" onPress={() => navigation.navigate('AddTaskScreen')}>
-                    Add Task
+                    Cadastrar
                 </Button>
-                <Button style={styles.botao} textColor={'black'} mode="contained" onPress={() => navigation.navigate('EditTaskScreen')}>
-                    Edit Task
-                </Button>
-                <Button style={styles.botao} textColor={'black'} mode="contained" onPress={() => navigation.navigate('Task')}>
-                    List Task
+                <Button style={styles.botao} textColor={'black'} mode="contained" onPress={() => navigation.navigate('CardScreen')}>
+                    Tarefas 
                 </Button>
             </View>
         </View>
