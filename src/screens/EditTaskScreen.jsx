@@ -1,64 +1,72 @@
-import React, { useState } from "react";
 import { View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
-import { styles } from "../utils/styles";
-import { addDoc, collection } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { styles } from "../utils/styles";
 
-export default function AddTaskScreen({ navigation }) {
+export default function EditTaskScreen({ docId, navigation }) {
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [dataPessoa, setDataPessoa] = useState("");
 
-  function cadastrarTask() {
-    const docRef = addDoc(collection(db, "tarefa"), {
+  useEffect(() => {
+    // Carrega os dados da tarefa a ser editada
+    async function fetchTaskData() {
+      const taskDocRef = doc(db, "tarefa", docId);
+      const taskDocSnapshot = await taskDocRef.get();
+
+      if (taskDocSnapshot.exists()) {
+        const taskData = taskDocSnapshot.data();
+        setTitulo(taskData.titulo);
+        setDescricao(taskData.descricao);
+        setDataPessoa(taskData.dataPessoa);
+      }
+    }
+
+    fetchTaskData();
+  }, []);
+
+  function atualizarTask() {
+    const taskDocRef = doc(db, "tarefa", docId);
+
+    updateDoc(taskDocRef, {
       titulo: titulo,
       descricao: descricao,
       dataPessoa: dataPessoa,
-      data: new Date(),
-    }).then((data) => {
-      console.log(data);
-      // navigation.navigate("HomeScreen");
+    }).then(() => {
+      console.log("Tarefa atualizada com sucesso!");
+      navigation.navigate("HomeScreen");
     });
-  }
-
-  function atualizarTitulo(value) {
-    setTitulo(value);
-  }
-
-  function atualizarDescricao(value) {
-    setDescricao(value);
-  }
-
-  function atualizarDataPessoa(value) {
-    setDataPessoa(value);
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Alterar</Text>
-        <TextInput
-          label="Título"
-          value={titulo}
-          onChangeText={atualizarTitulo}
-        />
+        <Text>Editar Tarefa</Text>
+        <TextInput label="Título" value={titulo} onChangeText={setTitulo} />
         <TextInput
           label="Descrição"
           value={descricao}
-          onChangeText={atualizarDescricao}
+          onChangeText={setDescricao}
         />
         <TextInput
           label="Data de Cadastro"
           value={dataPessoa}
-          onChangeText={atualizarDataPessoa}
+          onChangeText={setDataPessoa}
         />
 
         <Button
           labelStyle={{ fontWeight: "bold", color: "black" }}
-          onPress={cadastrarTask}
+          onPress={atualizarTask}
         >
-          Cadastrar
+          Atualizar
+        </Button>
+        <Button
+          labelStyle={{ fontWeight: "bold", color: "black" }}
+          onPress={() => navigation.navigate("HomeScreen")}
+        >
+          Voltar
         </Button>
       </View>
     </View>
