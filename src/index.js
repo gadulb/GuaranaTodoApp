@@ -18,6 +18,8 @@ export default function RootNavigation() {
                 <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="CardScreen" component={CardScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Task" component={Task} />
+                <Stack.Screen name="AddTaskScreen" component={AddTaskScreen} />
+                <Stack.Screen name="EditTaskScreen" component={EditTaskScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )
@@ -50,24 +52,6 @@ function TabsNavigation() {
                     tabBarLabel: 'Add',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="plus" color={color} size={26} />
-                    ),
-                }} />
-            <Tabs.Screen
-                name="EditTaskScreen"
-                component={EditTaskScreen}
-                options={{
-                    tabBarLabel: 'Edit',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="pencil" color={color} size={26} />
-                    ),
-                }} />
-            <Tabs.Screen
-                name="Task"
-                component={Task}   
-                options={{
-                    tabBarLabel: 'Task',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="select" color={color} size={26} />
                     ),
                 }} />
         </Tabs.Navigator>

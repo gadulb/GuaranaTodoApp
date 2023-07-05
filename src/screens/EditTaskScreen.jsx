@@ -1,11 +1,12 @@
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
-import { useEffect, useState } from "react";
-import { updateDoc, doc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { styles } from "../utils/styles";
 
-export default function EditTaskScreen({ docId, navigation }) {
+export default function EditTaskScreen({ route, navigation }) {
+  const { docId } = route.params;
   const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
   const [dataPessoa, setDataPessoa] = useState("");
@@ -13,31 +14,39 @@ export default function EditTaskScreen({ docId, navigation }) {
   useEffect(() => {
     // Carrega os dados da tarefa a ser editada
     async function fetchTaskData() {
-      const taskDocRef = doc(db, "tarefa", docId);
-      const taskDocSnapshot = await taskDocRef.get();
+      try {
+        const taskDocRef = doc(db, "tarefa", docId);
+        const taskDocSnapshot = await getDoc(taskDocRef);
 
-      if (taskDocSnapshot.exists()) {
-        const taskData = taskDocSnapshot.data();
-        setTitulo(taskData.titulo);
-        setDescricao(taskData.descricao);
-        setDataPessoa(taskData.dataPessoa);
+        if (taskDocSnapshot.exists()) {
+          const taskData = taskDocSnapshot.data();
+          setTitulo(taskData.titulo);
+          setDescricao(taskData.descricao);
+          setDataPessoa(taskData.dataPessoa);
+        }
+      } catch (error) {
+        console.error("Erro ao carregar os dados da tarefa:", error);
       }
     }
 
     fetchTaskData();
   }, []);
 
-  function atualizarTask() {
-    const taskDocRef = doc(db, "tarefa", docId);
+  async function atualizarTask() {
+    try {
+      const taskDocRef = doc(db, "tarefa", docId);
 
-    updateDoc(taskDocRef, {
-      titulo: titulo,
-      descricao: descricao,
-      dataPessoa: dataPessoa,
-    }).then(() => {
+      await updateDoc(taskDocRef, {
+        titulo: titulo,
+        descricao: descricao,
+        dataPessoa: dataPessoa,
+      });
+
       console.log("Tarefa atualizada com sucesso!");
-      navigation.navigate("HomeScreen");
-    });
+      navigation.goBack();
+    } catch (error) {
+      console.error("Erro ao atualizar a tarefa:", error);
+    }
   }
 
   return (
@@ -64,7 +73,7 @@ export default function EditTaskScreen({ docId, navigation }) {
         </Button>
         <Button
           labelStyle={{ fontWeight: "bold", color: "black" }}
-          onPress={() => navigation.navigate("HomeScreen")}
+          onPress={() => navigation.navigate("CardScreen")}
         >
           Voltar
         </Button>

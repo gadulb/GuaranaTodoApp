@@ -18,7 +18,7 @@ export default function AddTaskScreen({ navigation }) {
       data: new Date(),
     }).then((data) => {
       console.log(data);
-      // navigation.navigate("HomeScreen");
+      navigation.navigate("HomeScreen");
     });
   }
 
