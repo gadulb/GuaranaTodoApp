@@ -14,15 +14,23 @@ export default function RootNavigation() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="TabsNavigation">
-                <Stack.Screen name="TabsNavigation" component={TabsNavigation} options={{ headerShown: false }} />
-                <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="CardScreen" component={CardScreen} options={{ headerShown: false }} />
+                <Stack.Screen
+                    name="TabsNavigation"
+                    component={TabsNavigation}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="HomeScreen"
+                    component={HomeScreen}
+                    options={{ headerShown: false }}
+                />
+
                 <Stack.Screen name="Task" component={Task} />
-                <Stack.Screen name="AddTaskScreen" component={AddTaskScreen} />
+
                 <Stack.Screen name="EditTaskScreen" component={EditTaskScreen} />
             </Stack.Navigator>
         </NavigationContainer>
-    )
+    );
 }
 
 const Tabs = createMaterialBottomTabNavigator();
@@ -31,29 +39,41 @@ function TabsNavigation() {
     return (
         <Tabs.Navigator
             activeColor="black"
-            style={{ backgroundColor: 'black' }}
-            tabBarStyle={{ 
-                backgroundColor: 'red'
+            style={{ backgroundColor: "black" }}
+            tabBarStyle={{
+                backgroundColor: "red",
             }}
-            >
-            <Tabs.Screen 
+        >
+            <Tabs.Screen
                 name="HomeScreen"
                 component={HomeScreen}
                 options={{
-                    tabBarLabel: 'Home',
+                    tabBarLabel: "Home",
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={color} size={26} />
                     ),
-                }} />
+                }}
+            />
             <Tabs.Screen
                 name="AddTaskScreen"
                 component={AddTaskScreen}
                 options={{
-                    tabBarLabel: 'Add',
+                    tabBarLabel: "Add",
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="plus" color={color} size={26} />
                     ),
-                }} />
+                }}
+            />
+            <Tabs.Screen
+                name="CardScreen"
+                component={CardScreen}
+                options={{
+                    tabBarLabel: "Listar ",
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="card" color={color} size={26} />
+                    ),
+                }}
+            />
         </Tabs.Navigator>
-    )
+    );
 }

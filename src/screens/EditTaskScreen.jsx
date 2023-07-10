@@ -52,30 +52,55 @@ export default function EditTaskScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Editar Tarefa</Text>
-        <TextInput label="Título" value={titulo} onChangeText={setTitulo} />
+        <Text variant="headlineLarge" style={{textAlign: 'center', marginBottom: 20,}}>Editar Tarefa</Text>
+        <Text style={styles.infoT}>Título</Text>
+        <TextInput 
+          value={titulo} 
+          mode="outlined"
+          onChangeText={setTitulo}
+          placeholder="Titulo" />
+        <Text style={styles.infoT}>Descrição</Text>
         <TextInput
-          label="Descrição"
           value={descricao}
           onChangeText={setDescricao}
+          mode="outlined"
+          placeholder="Descrição"
         />
+        <Text style={styles.infoT}>Data</Text>
         <TextInput
-          label="Data de Cadastro"
+          placeholder="Data de Cadastro"
           value={dataPessoa}
+          mode="outlined"
           onChangeText={setDataPessoa}
         />
 
         <Button
-          labelStyle={{ fontWeight: "bold", color: "black" }}
+          labelStyle={{ fontWeight: "bold", color: "white" }}
           onPress={atualizarTask}
+          style={{
+            backgroundColor: 'green',
+            borderBottomColor: 'black',
+            boxShadow: 'black 5px 5px 0 0px',
+            borderRadius: 10,
+            marginVertical: 40,
+          }}
         >
           Atualizar
         </Button>
         <Button
           labelStyle={{ fontWeight: "bold", color: "black" }}
           onPress={() => navigation.navigate("CardScreen")}
-        >
-          Voltar
+          style={{
+            marginTop: 50,
+            backgroundColor: 'white',
+            borderBottomColor: 'black',
+            boxShadow: 'black 5px 5px 0 0px',
+            borderRadius: 10,
+            width: 100,
+            alignSelf: 'center',
+
+          }}>
+          ← Voltar
         </Button>
       </View>
     </View>

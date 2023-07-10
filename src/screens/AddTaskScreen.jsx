@@ -25,22 +25,38 @@ export default function AddTaskScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Cadastro</Text>
-        <TextInput label="Título" value={titulo} onChangeText={setTitulo} />
+        <Text variant="headlineLarge" style={{textAlign: 'center', marginBottom: 20,}}>Cadastro</Text>
+        <Text style={styles.infoT}>Título</Text>
+        <TextInput 
+          value={titulo} 
+          mode="outlined"
+          onChangeText={setTitulo}
+          placeholder="Titulo" />
+        <Text style={styles.infoT}>Descrição</Text>
         <TextInput
-          label="Descrição"
           value={descricao}
           onChangeText={setDescricao}
+          mode="outlined"
+          placeholder="Descrição"
         />
+        <Text style={styles.infoT}>Data de Cadastro</Text>
         <TextInput
-          label="Data de Cadastro"
+          placeholder="Data de Cadastro"
           value={dataPessoa}
+          mode="outlined"
           onChangeText={setDataPessoa}
         />
 
         <Button
-          labelStyle={{ fontWeight: "bold", color: "black" }}
+          labelStyle={{ fontWeight: "bold", color: "white" }}
           onPress={cadastrarTask}
+          style={{
+          backgroundColor: 'green',
+            borderBottomColor: 'black',
+            boxShadow: 'black 5px 5px 0 0px',
+            borderRadius: 10,
+            marginVertical: 40,
+          }}
         >
           Cadastrar
         </Button>
