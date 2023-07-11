@@ -24,9 +24,7 @@ export default function RootNavigation() {
                     component={HomeScreen}
                     options={{ headerShown: false }}
                 />
-
                 <Stack.Screen name="Task" component={Task} />
-
                 <Stack.Screen name="EditTaskScreen" component={EditTaskScreen} />
             </Stack.Navigator>
         </NavigationContainer>
@@ -39,9 +37,11 @@ function TabsNavigation() {
     return (
         <Tabs.Navigator
             activeColor="black"
-            style={{ backgroundColor: "black" }}
             tabBarStyle={{
-                backgroundColor: "red",
+                backgroundColor: "black",
+            }}
+            barStyle={{
+                backgroundColor: "white",
             }}
         >
             <Tabs.Screen
@@ -70,7 +70,7 @@ function TabsNavigation() {
                 options={{
                     tabBarLabel: "Listar ",
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="card" color={color} size={26} />
+                        <MaterialCommunityIcons name="pen" color={color} size={26} />
                     ),
                 }}
             />
